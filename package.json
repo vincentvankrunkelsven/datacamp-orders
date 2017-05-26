@@ -1,0 +1,36 @@
+{
+  "name": "datacamp-orders",
+  "version": "1.0.0",
+  "description": "DataCamp Sandwich Orders",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js --exec babel-node",
+    "client": "babel-node start-client.js"
+  },
+  "keywords": [
+    "sandwiches",
+    "orders",
+    "datacamp"
+  ],
+  "author": "Vincent Vankrunkelsven",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "locus": "^2.0.1",
+    "method-override": "^2.3.9",
+    "moment": "^2.18.1",
+    "morgan": "^1.8.2",
+    "node-fetch": "^1.7.0",
+    "node-schedule": "^1.2.3",
+    "pg": "^6.2.3"
+  }
+}
