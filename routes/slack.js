@@ -6,8 +6,9 @@ const { SlackMessage, SlackAttachment } = require('../notifications/slack');
 const knex = require('../db/knex');
 
 router.post('/hook', (req, res) => {
+  console.log({body: req.body});
+
   const { user: { name }} = req.body;
-  console.log(req.body);
   const slackAttachment = new SlackAttachment('', 'order_reply', {
     color: '#83c967',
   });
