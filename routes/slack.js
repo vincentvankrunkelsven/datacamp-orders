@@ -6,10 +6,8 @@ const bodyParser = require('body-parser');
 const { SlackMessage, SlackAttachment } = require('../notifications/slack');
 const knex = require('../db/knex');
 
-router.post('/hook', bodyParser.urlencoded(), (req, res) => {
-  console.log({body: req.body});
-
-  const { user: { name }} = req.body;
+router.post('/hook', bodyParser.urlencoded({ extended: false }), (req, res) => {
+  const { user: { name }} = JSON.parse(req.body.payload);
   const slackAttachment = new SlackAttachment('', 'order_reply', {
     color: '#83c967',
   });
