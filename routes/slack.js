@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
+const bodyParser = require('body-parser');
 
 const { SlackMessage, SlackAttachment } = require('../notifications/slack');
 const knex = require('../db/knex');
+
+router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/hook', (req, res) => {
   console.log({body: req.body});
