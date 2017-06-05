@@ -8,8 +8,8 @@ const announcementJob = require('./announcementJob');
 const ordersJob = require('./ordersJob');
 
 function startJobs() {
-  schedule.scheduleJob("55 16 * * *", announcementJob.runJob);
-  schedule.scheduleJob("00 17 * * *", ordersJob.runJob);
+  schedule.scheduleJob("0 17 * * *", announcementJob.runJob);
+  schedule.scheduleJob("5 17 * * *", ordersJob.runJob);
 }
 
 startJobs();
