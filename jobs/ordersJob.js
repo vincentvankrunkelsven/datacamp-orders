@@ -48,8 +48,8 @@ function runJob() {
   const today = moment().format("YYYY-MM-DD");
   getOpenOrdersOf(today).then(({ ordersString, ids }) => {
     if (ordersString !== undefined) {
-      // mailer.sendOrderEmail(createMail(orders, today), today);
-      console.log(createMail(ordersString, today));
+      mailer.sendOrderEmail(createMail(orders, today), today);
+      // console.log(createMail(ordersString, today));
     }
     return knex('orders').whereIn('id', ids).update({ ordered: true });
   });
