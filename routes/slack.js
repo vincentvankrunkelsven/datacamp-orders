@@ -7,6 +7,7 @@ const knex = require('../db/knex');
 
 router.post('/hook', (req, res) => {
   const { user: { name }} = req.body;
+  console.log(req.body);
   const slackAttachment = new SlackAttachment('', 'order_reply', {
     color: '#83c967',
   });
