@@ -7,12 +7,12 @@ function createLine({ name, order }) {
   return `${name}: ${order}`;
 }
 
-function createMail(orders, today) {
+function createMail(ordersString, today) {
   return `Beste,
 
 Hierbij de bestelling voor DataCamp van ${today}.
 
-${orders}
+${ordersString}
 
 Leveringsadres:
 DataCamp
@@ -48,7 +48,7 @@ function runJob() {
   const today = moment().format("YYYY-MM-DD");
   getOpenOrdersOf(today).then(({ ordersString, ids }) => {
     if (ordersString !== undefined) {
-      mailer.sendOrderEmail(createMail(orders, today), today);
+      mailer.sendOrderEmail(createMail(ordersString, today), today);
       // console.log(createMail(ordersString, today));
     }
     return knex('orders').whereIn('id', ids).update({ ordered: true });
