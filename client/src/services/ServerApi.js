@@ -45,6 +45,10 @@ export function getUsers() {
   return get('/users');
 }
 
+export function createUser(name) {
+  return post('/users/create', { name });
+}
+
 export function postOrders(orders) {
   return post('/orders/create', { orders });
 }

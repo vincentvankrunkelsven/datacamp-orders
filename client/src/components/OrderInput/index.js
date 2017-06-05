@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 

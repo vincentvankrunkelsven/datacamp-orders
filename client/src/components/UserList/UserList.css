@@ -1,2 +1,10 @@
 .UserList {
 }
+
+button {
+   outline:none;
+}
+
+button::-moz-focus-inner {
+   border: 0;
+}

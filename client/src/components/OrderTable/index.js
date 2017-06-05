@@ -32,7 +32,7 @@ class OrderTable extends Component {
         </thead>
         <tbody>
           { this.props.orders.map(({ id, name, order, order_on: orderDate, ordered }) => (
-            <tr>
+            <tr key={id}>
               <td>{name}</td>
               <td>{order}</td>
               <td>{moment(orderDate).format('YYYY-MM-DD')}</td>

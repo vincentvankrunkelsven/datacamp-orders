@@ -14,7 +14,13 @@ router.get('/', (req, res) => {
 
 router.post('/create', (req, res) => {
   const { name } = req.body;
-  knex('users').insert({ name }).returning('id').then(([id]) => {
+  knex('users').where({ name }).then((results) => {
+    if (results.length === 0) {
+      return knex('users').insert({ name }).returning('id');
+    } else {
+      return Promise.resolve([results[0].id]);
+    }
+  }).then(([id]) => {
     res.send({ id });
   }).catch((error) => {
     res.send({ error: 'Could not create user', message: error });
@@ -42,7 +48,7 @@ router.get('/autocomplete/:userId', (req, res) => {
     .count('ordered as n')
     .orderBy('n', 'desc')
     .groupBy('order')
-    .havingRaw('count(ordered) >= ?', 2)
+    .havingRaw('count(ordered) >= ?', 1)
     .then((orders) => {
       res.send(orders.map(order => order.order));
     });

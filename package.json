@@ -8,7 +8,8 @@
     "start": "node server.js",
     "start-dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js --exec babel-node",
-    "client": "babel-node start-client.js"
+    "client": "babel-node start-client.js",
+    "worker": "node jobs/index.js"
   },
   "keywords": [
     "sandwiches",

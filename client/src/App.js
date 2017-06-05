@@ -9,6 +9,7 @@ import DatePicker from './components/DatePicker';
 import OrderInput from './components/OrderInput';
 import OrderButton from './components/OrderButton';
 import OrderTable from './components/OrderTable';
+import InitialForm from './components/InitialForm';
 import { getOrders } from './services/ServerApi';
 import { Col, Row } from 'react-bootstrap';
 
@@ -18,10 +19,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeUser: parseInt(localStorage.getItem('activeUser')) || -1,
-      startDate: moment(),
-      endDate: moment(),
-      order: localStorage.getItem('order') || '',
       orders: [],
     };
 
@@ -29,6 +26,17 @@ class App extends Component {
     this.setDateRange = this.setDateRange.bind(this);
     this.setOrder = this.setOrder.bind(this);
     this.refreshOrders = this.refreshOrders.bind(this);
+    this.hideInitialForm = this.hideInitialForm.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({
+      startDate: moment(),
+      endDate: moment(),
+      activeUser: parseInt(localStorage.getItem('activeUser'), 10) || -1,
+      order: localStorage.getItem('order') || '',
+      showInitialForm: localStorage.getItem('activeUser') === null,
+    });
   }
 
   componentDidMount() {
@@ -56,6 +64,12 @@ class App extends Component {
     localStorage.setItem('order', order);
   }
 
+  hideInitialForm() {
+    this.setState({
+      showInitialForm: false,
+    });
+  }
+
   refreshOrders() {
     getOrders().then(orders => {
       this.setState({ orders });
@@ -63,6 +77,15 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.showInitialForm) {
+      return (
+        <InitialForm
+          logo={sandwich}
+          hideInitialForm={this.hideInitialForm}
+          setActiveUser={this.setActiveUser}
+        />
+      );
+    }
     return (
       <div className="App">
         <PageHeader>

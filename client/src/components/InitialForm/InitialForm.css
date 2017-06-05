@@ -1,0 +1,37 @@
+.initial-form__wrapper {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.initial-form__popup {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  padding: 10px;
+  text-align: center;
+}
+
+.initial-form__text-field {
+  width: 200px;
+}
+
+.initial-form__logo {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.initial-form__left {
+  float: left;
+}
+
+.initial-form__right {
+  float: right;
+}
