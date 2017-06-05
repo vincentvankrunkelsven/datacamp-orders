@@ -1,7 +1,7 @@
 const knex = require('../db/knex');
 const moment = require('moment');
 const { sendOrderUpdate } = require('../notifications/slack');
-const { createOrdersString } = require('./ordersJob');
+const { getOpenOrdersOf } = require('./ordersJob');
 
 function createLine({ name, order }) {
   return `- *${name}*: ${order}`;
@@ -9,10 +9,8 @@ function createLine({ name, order }) {
 
 function runJob() {
   const today = moment().format("YYYY-MM-DD");
-  createOrdersString(knex('orders').where({ order_on: today }), createLine)
-    .then((orders) => {
-      sendOrderUpdate(orders, today);
-    });
+  getOpenOrdersOf(today, createLine)
+    .then(({ ordersString }) => ordersString && sendOrderUpdate(ordersString, today));
 }
 
 module.exports = {

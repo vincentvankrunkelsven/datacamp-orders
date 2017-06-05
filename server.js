@@ -1,10 +1,12 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
-
-const { startJobs } = require('./jobs');
 
 // Use bluebird promises
 global.Promise = require('bluebird');
@@ -24,9 +26,8 @@ if (process.env.NODE_ENV === 'production') {
 // Routes
 app.use('/users', require('./routes/users'));
 app.use('/orders', require('./routes/orders'));
+app.use('/slack', require('./routes/slack'));
 
 app.listen(app.get('port'), () => {
   console.log(`Listening on http://localhost:${app.get('port')}`);
 });
-
-startJobs();

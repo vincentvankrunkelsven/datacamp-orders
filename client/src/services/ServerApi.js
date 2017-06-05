@@ -56,3 +56,7 @@ export function getOrders() {
 export function deleteOrder(id) {
   return del(`/orders/${id}`);
 }
+
+export function getAutocomplete(userId) {
+  return get(`/users/autocomplete/${userId}`)
+}

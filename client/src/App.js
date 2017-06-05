@@ -79,6 +79,7 @@ class App extends Component {
           <Col sm={8}>
             <OrderInput
               setOrder={this.setOrder}
+              activeUser={this.state.activeUser}
               order={this.state.order}
             />
             <DatePicker

@@ -15,7 +15,10 @@ class DataCampDatePicker extends React.Component {
   handleChange(date) {
     let startDate = this.props.startDate;
     let endDate = this.props.endDate;
-    if (date < this.props.startDate) {
+    if (!date.isSame(this.props.startDate, 'week')) {
+      startDate = date;
+      endDate = date;
+    } else if (date < this.props.startDate) {
       startDate = date;
     } else if (date > this.props.endDate) {
       endDate = date;
