@@ -6,6 +6,8 @@ const transporter = nodemailer.createTransport({
     auth: { user, pass },
 });
 
+console.log({ user, pass });
+
 function sendOrderEmail(text, date) {
   const mailOptions = {
     from: `"${userName}" <${user}>`,
